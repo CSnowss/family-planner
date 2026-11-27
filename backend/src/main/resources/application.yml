@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: family-planner
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/familyplanner}
+    username: ${DB_USER:familyplanner}
+    password: ${DB_PASSWORD:familyplanner}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+app:
+  jwt:
+    # Override JWT_SECRET in any real deployment (min 32 bytes).
+    secret: ${JWT_SECRET:dev-only-secret-change-me-dev-only-secret-change-me}
+    expiration: 12h
+  cors-allowed-origins:
+    - http://localhost:5173
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
